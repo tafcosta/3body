@@ -11,15 +11,14 @@ G_int = G * (unitM * unitT**2 / unitL**3)
 Mbh = 0.01
 xbh = 0.5
 ybh = 0.5
-
-x  = 0.7
-y  = 0.5
-vx = -3. #0.
-vy =  2. #np.sqrt(G_int * Mbh / 0.2) 
+x   = 0.7
+y   = 0.5
+vx  = -2. #0.
+vy  =  2.2 #np.sqrt(G_int * Mbh / 0.2) 
 
 
 time     = 0.
-time_max = 1.
+time_max = 5
 dt       = 1.e-5
 
 x    -= xbh
@@ -28,7 +27,7 @@ rad2  = x**2 + y**2
 acc_x = - G_int * Mbh / rad2 * x / np.sqrt(rad2)
 acc_y = - G_int * Mbh / rad2 * y / np.sqrt(rad2)
 
-nsteps   = int(time_max/dt)
+nsteps   = int((time_max - time)/dt)
 fac_red  = 100
 xpath    = np.zeros(int(nsteps/fac_red)+1)
 ypath    = np.zeros(int(nsteps/fac_red)+1)
@@ -58,6 +57,13 @@ for counter in np.arange(nsteps):
     y     = ytmp
     
 
-plt.scatter(xpath,ypath)
-plt.scatter([0],[0],marker='+')
+plt.tick_params(axis='both', which='both', direction='in', top='on', right='on', width=1.3, labelsize=
+16)
+plt.minorticks_on()
+
+plt.plot(xpath,ypath,color='orchid',linestyle='--')
+plt.scatter([0],[0],marker='+', color ='black')
+plt.axes().set_aspect('equal', 'datalim')
+plt.xlim(-0.5,0.5)
+plt.ylim(-0.5,0.5)
 plt.show()
