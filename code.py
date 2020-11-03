@@ -14,8 +14,8 @@ ybh = 0.5
 
 x  = 0.7
 y  = 0.5
-vx = -2. #0.
-vy =  3. #np.sqrt(G_int * Mbh / 0.2) 
+vx = -3. #0.
+vy =  2. #np.sqrt(G_int * Mbh / 0.2) 
 
 
 time     = 0.
@@ -28,13 +28,14 @@ rad2  = x**2 + y**2
 acc_x = - G_int * Mbh / rad2 * x / np.sqrt(rad2)
 acc_y = - G_int * Mbh / rad2 * y / np.sqrt(rad2)
 
-xx = x + vx * dt + 1./2 * dt**2 * acc_x
-yy = y + vy * dt + 1./2 * dt**2 * acc_y
-
 nsteps   = int(time_max/dt)
 fac_red  = 100
 xpath    = np.zeros(int(nsteps/fac_red)+1)
 ypath    = np.zeros(int(nsteps/fac_red)+1)
+
+
+xx = x + vx * dt + 0.5 * dt**2 * acc_x
+yy = y + vy * dt + 0.5 * dt**2 * acc_y
 
 for counter in np.arange(nsteps):
         
@@ -58,5 +59,5 @@ for counter in np.arange(nsteps):
     
 
 plt.scatter(xpath,ypath)
-plt.scatter([0],[0])
+plt.scatter([0],[0],marker='+')
 plt.show()
