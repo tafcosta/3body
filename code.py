@@ -14,13 +14,13 @@ ybh = 0.5
 
 x  = 0.7
 y  = 0.5
-vx = -3. #0.
-vy =  2. #np.sqrt(G_int * Mbh / 0.2) 
+vx = -2. #0.
+vy =  3. #np.sqrt(G_int * Mbh / 0.2) 
 
 
 time     = 0.
 time_max = 1.
-dt       = 1.e-4
+dt       = 1.e-5
 
 x    -= xbh
 y    -= ybh
@@ -33,8 +33,8 @@ yy = y + vy * dt + 1./2 * dt**2 * acc_y
 
 nsteps   = int(time_max/dt)
 fac_red  = 100
-xpath    = np.zeros(int(nsteps/fac_red))
-ypath    = np.zeros(int(nsteps/fac_red))
+xpath    = np.zeros(int(nsteps/fac_red)+1)
+ypath    = np.zeros(int(nsteps/fac_red)+1)
 
 for counter in np.arange(nsteps):
         
